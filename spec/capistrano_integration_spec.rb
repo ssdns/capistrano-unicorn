@@ -72,13 +72,15 @@ describe CapistranoUnicorn::CapistranoIntegration, "loaded tasks into capistrano
   end
 
   describe "#kill_unicorn" do
+    let(:deploy_user){ "deploy_user" }
     before do
-      @configuration.stub(:unicorn_pid).and_return(999)
-      @configuration.stub(:unicorn_user).and_return("deploy_user")
+      @configuration.stub(:fetch).with(:unicorn_pid).and_return(999)
+      @configuration.stub(:fetch).with(:unicorn_user).and_return(deploy_user)
+      @configuration.stub(:sudo).with(as: deploy_user).and_return("-u #{deploy_user}")
     end
 
     it "generates the kill unicorn command" do
-      @configuration.kill_unicorn('QUIT').should match /-u deploy_user kill -s QUIT `cat 999`;/
+      @configuration.kill_unicorn('QUIT').should match /-u #{deploy_user} kill -s QUIT `cat 999`;/
     end
   end
 end
