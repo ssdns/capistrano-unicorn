@@ -1,7 +1,6 @@
 require 'tempfile'
 
 require 'capistrano'
-require 'capistrano/version'
 
 require 'capistrano-unicorn/config'
 require 'capistrano-unicorn/utility'
