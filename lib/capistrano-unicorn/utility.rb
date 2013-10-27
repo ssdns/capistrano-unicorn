@@ -141,7 +141,7 @@ module CapistranoUnicorn
     end
 
     def unicorn_roles
-      defer{ fetch(:unicorn_roles, :app) }
+      lambda{ fetch(:unicorn_roles, :app) }
     end
   end
 end
