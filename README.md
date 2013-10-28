@@ -170,6 +170,17 @@ set :domain,      "app.staging.mydomain.com"
 set :rails_env,   "staging"
 ```
 
+### Capistrano V3
+
+If you want to use your ruby. You'll need to set it's PATH,
+do like this.
+
+```ruby
+set :default_env, {
+  path: "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
+```
+
 Nice and clean!
 
 ## License
